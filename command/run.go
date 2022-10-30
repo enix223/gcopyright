@@ -73,7 +73,7 @@ func readFile(path string, doc *docx.File) (lines int) {
 		if RunOptions.Verbose {
 			log.Println(line)
 		}
-		para.AddText(line)
+		para.AddText(trimmed)
 		lines++
 	}
 	log.Printf("[INFO] read file [%s] success, total lines: %d", path, lines)
