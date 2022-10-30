@@ -21,8 +21,8 @@ gcopyright \
 | 参数 | 描述 |
 |-|-|
 | `--patterns PATTERNS`, `-p PATTERNS` | 搜索路径，支持glob |
-| `--ignoreerror`, `-i`  | 是否忽略错误，默认是 |
+| `--abortiferror`, `-e`  | 当出现错误时是否中止程序，默认否 |
 | `--totallines TOTALLINES`, `-l TOTALLINES` | 最多读取多少行，默认3000  |
-| `--output OUTPUT`, `-o OUTPUT` | 输出docx文件路径|
-| `--trimline`, `-t`  | 是否去除空行，默认是|
+| `--output OUTPUT`, `-o OUTPUT` | 输出docx文件路径 |
+| `--allowemptyline`, `-a`  | 是否允许空行，默认否 |
 | `--verbose`, `-v` | verbose模式 |

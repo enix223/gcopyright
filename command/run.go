@@ -12,7 +12,7 @@ import (
 )
 
 func assertAbort() {
-	if !RunOptions.IgnoreError {
+	if RunOptions.AbortIfError {
 		os.Exit(-1)
 	}
 }
@@ -66,7 +66,7 @@ func readFile(path string, doc *docx.File, currentLines int) (lines int) {
 	for scanner.Scan() {
 		line := scanner.Text()
 		trimmed := strings.TrimRight(line, string(spaces))
-		if RunOptions.TrimLine && len(trimmed) == 0 {
+		if !RunOptions.AllowEmptyLine && len(trimmed) == 0 {
 			continue
 		}
 		if RunOptions.Verbose {
