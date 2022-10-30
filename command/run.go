@@ -32,9 +32,9 @@ func Run() {
 		}
 
 		for _, match := range matchGlobs {
-			lines += readFile(match, doc)
+			lines += readFile(match, doc, lines)
 			if lines >= RunOptions.TotalLines {
-				log.Print("reach line limit")
+				log.Print("[INFO] reach line limit")
 				saveDoc(lines, doc)
 				return
 			}
@@ -51,7 +51,7 @@ func saveDoc(lines int, doc *docx.File) {
 	}
 }
 
-func readFile(path string, doc *docx.File) (lines int) {
+func readFile(path string, doc *docx.File, currentLines int) (lines int) {
 	file, err := os.Open(path)
 	if err != nil {
 		log.Printf("[ERR] failed to read file: %s, err: %s", path, err)
@@ -75,6 +75,10 @@ func readFile(path string, doc *docx.File) (lines int) {
 		}
 		para.AddText(trimmed)
 		lines++
+		currentLines++
+		if currentLines >= RunOptions.TotalLines {
+			break
+		}
 	}
 	log.Printf("[INFO] read file [%s] success, total lines: %d", path, lines)
 	return
