@@ -64,7 +64,6 @@ func readFile(path string, doc *docx.File, currentLines int) (lines int) {
 
 	spaces := []rune{'\t', '\n', '\v', '\f', '\r', ' ', 0x85, 0xA0}
 	for scanner.Scan() {
-		para := doc.AddParagraph()
 		line := scanner.Text()
 		trimmed := strings.TrimRight(line, string(spaces))
 		if RunOptions.TrimLine && len(trimmed) == 0 {
@@ -73,7 +72,7 @@ func readFile(path string, doc *docx.File, currentLines int) (lines int) {
 		if RunOptions.Verbose {
 			log.Println(line)
 		}
-		para.AddText(trimmed)
+		doc.AddParagraph().AddText(trimmed)
 		lines++
 		currentLines++
 		if currentLines >= RunOptions.TotalLines {
