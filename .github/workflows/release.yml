@@ -64,4 +64,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: windows
-        goarch: 386
+        goarch: amd64
