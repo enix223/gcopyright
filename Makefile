@@ -22,6 +22,9 @@ linux-amd64: init
 darwin-amd64: init
 	GOOS=darwin GARCH=amd64 go build -o bin/gcopyright-darwin-amd64 main.go
 
+darwin-arm64: init
+	GOOS=darwin GARCH=arm64 go build -o bin/gcopyright-darwin-arm64 main.go
+
 # 386
 
 windows-386: init
